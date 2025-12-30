@@ -21,6 +21,7 @@ function Login() {
       );
 
       const data = await res.json();
+      console.log("LOGIN RESPONSE:", data);
       setLoading(false);
 
       if (!res.ok) {
@@ -28,12 +29,21 @@ function Login() {
         return;
       }
 
-      localStorage.setItem("user", JSON.stringify(data.user));
+      // ✅ SAFE STORAGE (works for all backend responses)
+      localStorage.setItem(
+        "user",
+        JSON.stringify(data.user || data.data || data)
+      );
+
       alert("Login successful");
-      window.location.href = "https://zerodha-dashboard.onrender.com";
+
+      // ✅ SAME APP REDIRECT
+      window.location.href = "/dashboard";
+
     } catch (error) {
+      console.error(error);
       setLoading(false);
-      alert("Something went wrong");
+      alert("Server error. Try again.");
     }
   };
 
@@ -59,14 +69,17 @@ function Login() {
             required
           />
 
-          <button type="submit">
+          <button type="submit" disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
         <p>
           Don’t have an account?{" "}
-          <span onClick={() => (window.location.href = "/signup")}>
+          <span
+            style={{ color: "#387ed1", cursor: "pointer" }}
+            onClick={() => (window.location.href = "/signup")}
+          >
             Sign up
           </span>
         </p>
