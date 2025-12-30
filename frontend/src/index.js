@@ -14,7 +14,15 @@ import Footer from "./landing_page/Footer";
 import ProductPage from "./landing_page/products/ProductPage";
 import NotFoundPage from "./landing_page/NotFoundPage";
 
+// ✅ DASHBOARD IMPORT (CHANGE PATH IF NEEDED)
+import Dashboard from "./dashboard/Dashboard";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+const ProtectedRoute = ({ children }) => {
+  const user = localStorage.getItem("user");
+  return user ? children : window.location.replace("/login");
+};
 
 root.render(
   <BrowserRouter>
@@ -28,6 +36,17 @@ root.render(
       <Route path="/pricing" element={<PricingPage />} />
       <Route path="/support" element={<SupportPage />} />
       <Route path="/about" element={<AboutPage />} />
+
+      {/* ✅ PROTECTED DASHBOARD */}
+      <Route
+        path="/dashboard"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
+
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
 
