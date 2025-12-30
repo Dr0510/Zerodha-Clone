@@ -16,12 +16,33 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Signup Data:", formData);
 
-    // later you will connect backend API here
-    alert("Signup submitted (backend not connected yet)");
+    try {
+      const res = await fetch(
+        "https://zerodha-backend.onrender.com/api/signup",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.message || "Signup failed");
+        return;
+      }
+
+      alert("Signup successful! Please login.");
+      window.location.href = "/login";
+    } catch (error) {
+      alert("Something went wrong");
+    }
   };
 
   return (
@@ -71,7 +92,10 @@ function Signup() {
         </form>
 
         <p className="login-link">
-          Already have an account? <span>Login</span>
+          Already have an account?{" "}
+          <span onClick={() => (window.location.href = "/login")}>
+            Login
+          </span>
         </p>
       </div>
     </div>
