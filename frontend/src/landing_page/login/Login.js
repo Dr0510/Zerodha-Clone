@@ -38,7 +38,7 @@ function Login() {
       alert("Login successful");
 
       // ✅ SAME APP REDIRECT
-      window.location.href = "/dashboard";
+      window.location.href = "https://zerodha-dashboard-a2tz.onrender.com";
 
     } catch (error) {
       console.error(error);
@@ -89,3 +89,4 @@ function Login() {
 }
 
 export default Login;
+
