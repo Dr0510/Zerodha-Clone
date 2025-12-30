@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3002;
 const MONGO_URI = process.env.MONGO_URI;
 
 /* =======================
-   CORS CONFIG (FIXED)
+   CORS CONFIG (NODE 22 SAFE)
 ======================= */
 app.use(
   cors({
@@ -24,14 +24,13 @@ app.use(
       "https://zerodha-frontend-dd5t.onrender.com",
       "http://localhost:3000",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
-// Handle preflight requests
-app.options("*", cors());
-
+/* =======================
+   MIDDLEWARE
+======================= */
 app.use(express.json());
 
 /* =======================
@@ -40,7 +39,17 @@ app.use(express.json());
 mongoose
   .connect(MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.error("MongoDB Error:", err));
+  .catch((err) => {
+    console.error("MongoDB Error:", err);
+    process.exit(1);
+  });
+
+/* =======================
+   HEALTH CHECK (IMPORTANT)
+======================= */
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
 
 /* =======================
    SIGNUP API
@@ -75,7 +84,7 @@ app.post("/api/signup", async (req, res) => {
       userId: user._id,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Signup error:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
@@ -110,6 +119,7 @@ app.post("/api/login", async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ message: "Server error" });
   }
 });
