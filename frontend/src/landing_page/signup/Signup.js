@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,7 +15,10 @@ function Signup() {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -30,7 +36,6 @@ function Signup() {
       );
 
       const data = await res.json();
-      console.log("SIGNUP RESPONSE:", data);
       setLoading(false);
 
       if (!res.ok) {
@@ -39,7 +44,7 @@ function Signup() {
       }
 
       alert("Signup successful! Please login.");
-      window.location.href = "/login";
+      navigate("/login"); // ✅ FIX (NO 404)
 
     } catch (error) {
       console.error(error);
