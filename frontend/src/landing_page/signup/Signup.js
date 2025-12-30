@@ -9,12 +9,15 @@ function Signup() {
     password: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const res = await fetch(
@@ -27,6 +30,8 @@ function Signup() {
       );
 
       const data = await res.json();
+      console.log("SIGNUP RESPONSE:", data);
+      setLoading(false);
 
       if (!res.ok) {
         alert(data.message || "Signup failed");
@@ -35,8 +40,11 @@ function Signup() {
 
       alert("Signup successful! Please login.");
       window.location.href = "/login";
+
     } catch (error) {
-      alert("Something went wrong");
+      console.error(error);
+      setLoading(false);
+      alert("Server error. Try again.");
     }
   };
 
@@ -46,12 +54,43 @@ function Signup() {
         <h2>Create account</h2>
 
         <form onSubmit={handleSubmit}>
-          <input name="name" placeholder="Name" onChange={handleChange} required />
-          <input name="email" placeholder="Email" onChange={handleChange} required />
-          <input name="mobile" placeholder="Mobile" onChange={handleChange} required />
-          <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
+          <input
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
 
-          <button type="submit">Sign up</button>
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            name="mobile"
+            placeholder="Mobile"
+            value={formData.mobile}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+
+          <button type="submit" disabled={loading}>
+            {loading ? "Creating..." : "Sign up"}
+          </button>
         </form>
       </div>
     </div>
