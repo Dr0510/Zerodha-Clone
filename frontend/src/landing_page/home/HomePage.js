@@ -8,7 +8,7 @@ import OpenAccount from "../OpenAccount";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-function HomePage() {
+function Homepage() {
   return (
     <>
       <Hero />
@@ -21,4 +21,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default Homepage;
