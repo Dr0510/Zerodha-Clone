@@ -1,10 +1,9 @@
 import React from "react";
 import Hero from "./Hero";
-import Awards from "./Awards";
+import Award from "./Award";
 import Stats from "./Stats";
 import Pricing from "./Pricing";
-import Education from "./Education";
-
+import Eduction from "./Eduction";
 import OpenAccount from "../OpenAccount";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -12,14 +11,12 @@ import Footer from "../Footer";
 function HomePage() {
   return (
     <>
-      <Navbar />
       <Hero />
-      <Awards />
+      <Award />
       <Stats />
       <Pricing />
-      <Education />
+      <Eduction />
       <OpenAccount />
-      <Footer />
     </>
   );
 }

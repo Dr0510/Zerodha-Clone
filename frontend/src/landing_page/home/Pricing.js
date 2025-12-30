@@ -4,33 +4,46 @@ function Pricing() {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-4">
-          <h1 className="mb-3 fs-2">Unbeatable pricing</h1>
-          <p>
+        <div className="col-6">
+          <h1 className="fs-2 pb-3"> Unbeatable pricing </h1>
+          <p className="text-muted">
             We pioneered the concept of discount broking and price transparency
-            in India. Flat fees and no hidden charges.
+            <br /> in India. Flat fees and no hidden charges.
           </p>
-          <a href="" style={{ textDecoration: "none" }}>
-            See Pricing{" "}
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+          <a
+            className="p-2 fs-8"
+            style={{ textDecoration: "none" }}
+            href="www.google.com"
+          >
+            {" "}
+            See pricing <i class="fa-solid fa-arrow-right-long"></i>{" "}
           </a>
         </div>
-        <div className="col-2"></div>
-        <div className="col-6  mb-5">
-          <div className="row text-center">
-            <div className="col p-3 border">
-              <h1 className="mb-3">₹0</h1>
-              <p>
-                Free equity delivery and
-                <br />
-                direct mutual funds
-              </p>
-            </div>
-            <div className="col p-3 border">
-              <h1 className="mb-3">₹20</h1>
-              <p>Intraday and F&O</p>
-            </div>
-          </div>
+        <div className="col-2">
+          <img
+            src="media/images/pricing-eq.svg"
+            alt="priceing img"
+            style={{ width: "60%" }}
+          />
+          <p className="text-muted"> Free account opening</p>
+        </div>
+        <div className="col-2">
+          <img
+            src="media/images/pricing-eq.svg"
+            alt="pricing img"
+            style={{ width: "60%" }}
+          ></img>
+          <p className="text-muted">
+            Free equity delivery and direct mutual funds
+          </p>
+        </div>
+        <div className="col-2">
+          <img
+            src="media/images/other-trades.svg"
+            alt="price img"
+            style={{ width: "60%" }}
+          ></img>
+          <p className="text-muted">Intraday and F&O</p>
         </div>
       </div>
     </div>

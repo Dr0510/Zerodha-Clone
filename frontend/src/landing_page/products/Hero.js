@@ -1,19 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Hero() {
   return (
-    <div className="container border-bottom mb-5">
-      <div className="text-center mt-5 p-3">
-        <h1>Technology</h1>
-        <h3 className="text-muted mt-3 fs-4">
-          Sleek, modern and intuitive trading platforms
+    <div className="container border-bottom mb-5 ">
+      <div className="row text-center p-5 m-5 ">
+        <h1 className="fs-2 text-muted">Zerodha Products</h1>
+        <h3 className="fs-4 text-muted p-2">
+          Sleek, modern, and intuitive trading platforms
         </h3>
-        <p className="mt-3 mb-5">
+        <p className="fs-6 p-2 ">
           Check out our{" "}
-          <a href="" style={{ textDecoration: "none" }}>
-            investment offerings{" "}
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-          </a>
+          <Link to={"/"} style={{ textDecoration: "none" }}>
+            {" "}
+            investment offerings <i class="fa-solid fa-arrow-right-long"></i>{" "}
+          </Link>
         </p>
       </div>
     </div>

@@ -2,82 +2,123 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer style={{ backgroundColor: "rgb(250, 250, 250)" }}>
+    <footer style={{ backgroundColor: "rgb(250,250,250 " }}>
       <div className="container border-top mt-5">
         <div className="row mt-5">
-          <div className="col">
-            <img src="media/images/logo.svg" style={{ width: "50%" }} />
-            <p>
-              &copy; 2010 - 2024, Not Zerodha Broking Ltd. All rights reserved.
+
+          <div className="col-4">
+            <img
+              src="media/images/logo.svg"
+              alt="logo"
+              style={{ width: "35%" }}
+            />
+            <p className="pt-4 fs-8">
+              © 2010 - 2025, Zerodha Broking Ltd.
+              <br /> All rights reserved.
             </p>
+
+            <div className="social-icons pb-2" >
+              <i className="fa-brands fa-x-twitter p-2"></i>
+              <i className="fa-brands fa-square-facebook p-2"></i>
+              <i className="fa-brands fa-instagram p-2"></i>
+              <i className="fa-brands fa-linkedin-in p-2"></i>
+            </div>
+           <div className="border-top pt-2"> 
+            <i className ="fa-brands fa-youtube p-2"></i>
+            <i className ="fa-brands fa-whatsapp p-2"></i>
+            <i className ="fa-brands fa-telegram p-2"></i>
+            </div>
           </div>
-          <div className="col">
-            <p>Company</p>
-            <a href="">About</a>
-            <br />
-            <a href="">Products</a>
-            <br />
-            <a href="">Pricing</a>
-            <br />
-            <a href="">Referral programme</a>
-            <br />
-            <a href="">Careers</a>
-            <br />
-            <a href="">Zerodha.tech</a>
-            <br />
-            <a href="">Press & media</a>
-            <br />
-            <a href="">Zerodha cares (CSR)</a>
-            <br />
+
+          <div className="col-2 quick-links">
+            <p> Account</p>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> Open demat account </a>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> Minor demat account </a>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> NRI demat account </a>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> Commodity </a>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> Dematerialisation </a>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> Fund transfer </a>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> MTF </a>
+            <a href="www.google.com " className="" style={{textDecoration:'none'}}> Referral program </a>
           </div>
-          <div className="col">
-            <p>Support</p>
-            <a href="">Contact</a>
-            <br />
-            <a href="">Support portal</a>
-            <br />
-            <a href="">Z-Connect blog</a>
-            <br />
-            <a href="">List of charges</a>
-            <br />
-            <a href="">Downloads & resources</a>
-            <br />
+
+          <div className="col-2 quick-links ">
+            <p> Support</p>
+            <a href="www.google.com"> Contact us </a>
+            <a href="www.google.com"> Support portal </a>
+            <a href="www.google.com"> How to file a complaint? </a>
+            <a href="www.google.com"> Status of your complaints</a>
+            <a href="www.google.com"> Bulletin</a>
+            <a href="www.google.com"> Circular</a>
+            <a href="www.google.com"> Z-Connect blog</a>
+            <a href="www.google.com"> Downloads</a>
           </div>
-          <div className="col">
-            <p>Account</p>
-            <a href="">Open an account</a>
-            <br />
-            <a href="">Fund transfer</a>
-            <br />
-            <a href="">60 day challenge</a>
-            <br />
+          <div className="col-2 quick-links">
+            <p> Company</p>
+            <a href="www.google.com "> About </a>
+            <a href="www.google.com "> Philosophy </a>
+            <a href="www.google.com "> Press & media </a>
+            <a href="www.google.com "> Careers </a>
+            <a href="www.google.com "> Zerodha Cares (CSR) </a>
+            <a href="www.google.com "> Zerodha.tech </a>
+            <a href="www.google.com "> Open source </a>
+          </div>
+          <div className="col-2 quick-links ">
+            <p> Quick links</p>
+            <a href="www.google.com"> Upcoming IPOs</a>
+            <a href="www.google.com"> Brokerage charges</a>
+            <a href="www.google.com"> Market holidays</a>
+            <a href="www.google.com"> Economic calendar</a>
+            <a href="www.google.com"> Calculators</a>
+            <a href="www.google.com"> Markets</a>
+            <a href="www.google.com"> Sectors</a>
           </div>
         </div>
-        <div className="mt-5 text-muted" style={{ fontSize: "14px" }}>
+        <div className="mt-5  text-muted" style={{ fontSize: "11px" }}>
           <p>
-            Zerodha Broking Ltd.: Member of NSE​ &​ BSE – SEBI Registration no.:
-            INZ000031633 CDSL: Depository services through Zerodha Securities
-            Pvt. Ltd. – SEBI Registration no.: IN-DP-100-2015 Commodity Trading
-            through Zerodha Commodities Pvt. Ltd. MCX: 46025 – SEBI Registration
-            no.: INZ000038238 Registered Address: Zerodha Broking Ltd.,
-            #153/154, 4th Cross, Dollars Colony, Opp. Clarence Public School,
-            J.P Nagar 4th Phase, Bengaluru - 560078, Karnataka, India. For any
-            complaints pertaining to securities broking please write to
-            complaints@zerodha.com, for DP related to dp@zerodha.com. Please
-            ensure you carefully read the Risk Disclosure Document as prescribed
-            by SEBI | ICF
+            {" "}
+            Zerodha Broking Ltd.: Member of NSE, BSE​ &​ MCX – SEBI Registration
+            no.: INZ000031633 CDSL/NSDL: Depository services through Zerodha
+            Broking Ltd. – SEBI Registration no.: IN-DP-431-2019 Registered
+            Address: Zerodha Broking Ltd., #153/154, 4th Cross, Dollars Colony,
+            Opp. Clarence Public School, J.P Nagar 4th Phase, Bengaluru -
+            560078, Karnataka, India. For any complaints pertaining to
+            securities broking please write to complaints@zerodha.com, for DP
+            related to dp@zerodha.com. Please ensure you carefully read the Risk
+            Disclosure Document as prescribed by SEBI | ICF{" "}
           </p>
 
           <p>
+            {" "}
             Procedure to file a complaint on SEBI SCORES: Register on SCORES
             portal. Mandatory details for filing complaints on SCORES: Name,
             PAN, Address, Mobile Number, E-mail ID. Benefits: Effective
-            Communication, Speedy redressal of the grievances
+            Communication, Speedy redressal of the grievances{" "}
+          </p>
+
+          <p>
+            {" "}
+            Smart Online Dispute Resolution | Grievances Redressal Mechanism{" "}
           </p>
 
           <p>
             Investments in securities market are subject to market risks; read
             all the related documents carefully before investing.
+          </p>
+
+          <p>
+            Attention investors: 1) Stock brokers can accept securities as
+            margins from clients only by way of pledge in the depository system
+            w.e.f September 01, 2020. 2) Update your e-mail and phone number
+            with your stock broker / depository participant and receive OTP
+            directly from depository on your e-mail and/or mobile number to
+            create pledge. 3) Check your securities / MF / bonds in the
+            consolidated account statement issued by NSDL/CDSL every month.
+          </p>
+
+          <p>
+            India's largest broker based on networth as per NSE. NSE broker
+            factsheet
           </p>
 
           <p>
@@ -98,6 +139,27 @@ function Footer() {
             claiming to be part of Zerodha and offering such services, please
             create a ticket here.
           </p>
+
+          <p>
+            *Customers availing insurance advisory services offered by Ditto
+            (Tacterial Consulting Private Limited | IRDAI Registered Corporate
+            Agent (Composite) License No CA0738) will not have access to the
+            exchange investor grievance redressal forum, SEBI SCORES/ODR, or
+            arbitration mechanism for such products.
+          </p>
+         
+    <div className="footer-bottom">
+    <a href="#">NSE</a>
+    <a href="#">BSE</a>
+    <a href="#">MCX</a>
+    <a href="#">Terms & Conditions</a>
+    <a href="#">Policies & Procedures</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Disclosure</a>
+    <a href="#">For Investor's Attention</a>
+    <a href="#">Investor Charter</a>
+</div>
+
         </div>
       </div>
     </footer>

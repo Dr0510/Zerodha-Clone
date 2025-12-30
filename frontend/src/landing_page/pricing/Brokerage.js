@@ -1,48 +1,64 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function Brokerage() {
+function Broker() {
   return (
-    <div className="container">
-      <div className="row p-5 mt-5 text-center border-top">
-        <div className="col-8 p-4">
-          <a href="" style={{ textDecoration: "none" }}>
-            <h3 className="fs-5">Brokerage calculator</h3>
-          </a>
-          <ul
-            style={{ textAlign: "left", lineHeight: "2.5", fontSize: "12px" }}
-            className="text-mut"
-          >
-            <li>
-              Call & Trade and RMS auto-squareoff:Additional charges of ₹50 +
-              GST per order.
-            </li>
-            <li>Digital contract notes will be sent via e-mail.</li>
-            <li>
-              Physical copies of contract notes, if required, shall be charged
-              ₹20 per contract note. Courier charges apply.
-            </li>
-            <li>
-              For NRI account (non-PIS), 0.5% or ₹100 per executed order for
-              equity (whichever is lower).
-            </li>
-            <li>
-              For NRI account (PIS), 0.5% or ₹200 per executed order for equity
-              (whichever is lower).
-            </li>
-            <li>
-              If the account is in debit balance, any order placed will be
-              charged ₹40 per executed order instead of ₹20 per executed order.
-            </li>
-          </ul>
-        </div>
-        <div className="col-4 p-4">
-          <a href="" style={{ textDecoration: "none" }}>
-            <h3 className="fs-5">List of charges</h3>
-          </a>
-        </div>
-      </div>
+    <div className="table-responsive mt-4">
+      <table className="table table-bordered">
+        <thead className="table-light">
+          <tr>
+            <th>Charge Type</th>
+            <th>Delivery</th>
+            <th>Intraday</th>
+            <th>Futures</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Brokerage</td>
+            <td>₹0</td>
+            <td>0.03% or ₹20</td>
+            <td>0.03% or ₹20</td>
+            <td>₹20 per order</td>
+          </tr>
+
+          <tr>
+            <td>STT / CTT</td>
+            <td>0.1% buy & sell</td>
+            <td>0.025% sell</td>
+            <td>0.01% sell</td>
+            <td>0.05% sell</td>
+          </tr>
+
+          <tr>
+            <td>Transaction Charges</td>
+            <td>NSE: 0.00345%</td>
+            <td>NSE: 0.00345%</td>
+            <td>NSE: 0.002%</td>
+            <td>NSE: 0.053%</td>
+          </tr>
+
+          <tr>
+            <td>GST</td>
+            <td colSpan="4">18% on brokerage + charges</td>
+          </tr>
+
+          <tr>
+            <td>SEBI Charges</td>
+            <td colSpan="4">₹10 per crore</td>
+          </tr>
+
+          <tr>
+            <td>Stamp Duty</td>
+            <td colSpan="4">As per state rules</td>
+          </tr>
+        </tbody>
+      </table>
+      <h3  className="fs-4 text-muted text-center pt-3 mt-3"> <Link style={{textDecoration:'none'}} to={'/'} > Calculate your costs upfront </Link> using our brokerage calculator</h3>
     </div>
   );
 }
 
-export default Brokerage;
+export default Broker;
