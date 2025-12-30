@@ -15,9 +15,7 @@ function Login() {
         "https://zerodha-clone-t5ol.onrender.com/api/login",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
         }
       );
@@ -30,12 +28,8 @@ function Login() {
         return;
       }
 
-      // ✅ Save login state
       localStorage.setItem("user", JSON.stringify(data.user));
-
       alert("Login successful");
-
-      // ✅ Redirect to dashboard
       window.location.href = "https://zerodha-dashboard.onrender.com";
     } catch (error) {
       setLoading(false);
@@ -47,12 +41,11 @@ function Login() {
     <div className="login-container">
       <div className="login-card">
         <h2>Login to Zerodha</h2>
-        <p className="subtitle">Welcome back</p>
 
         <form onSubmit={handleLogin}>
           <input
             type="email"
-            placeholder="Email address"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -66,12 +59,12 @@ function Login() {
             required
           />
 
-          <button type="submit" disabled={loading}>
+          <button type="submit">
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
-        <p className="signup-link">
+        <p>
           Don’t have an account?{" "}
           <span onClick={() => (window.location.href = "/signup")}>
             Sign up
