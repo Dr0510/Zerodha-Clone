@@ -21,7 +21,7 @@ function Signup() {
 
     try {
       const res = await fetch(
-        "https://zerodha-backend.onrender.com/api/signup",
+        "https://zerodha-clone-t5ol.onrender.com/api/signup",
         {
           method: "POST",
           headers: {
