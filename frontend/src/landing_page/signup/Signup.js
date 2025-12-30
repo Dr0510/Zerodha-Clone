@@ -10,10 +10,7 @@ function Signup() {
   });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
@@ -24,9 +21,7 @@ function Signup() {
         "https://zerodha-clone-t5ol.onrender.com/api/signup",
         {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         }
       );
@@ -48,55 +43,16 @@ function Signup() {
   return (
     <div className="signup-container">
       <div className="signup-card">
-        <h2>Create your Zerodha account</h2>
-        <p className="subtitle">Start investing in stocks & mutual funds</p>
+        <h2>Create account</h2>
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Email address"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="tel"
-            name="mobile"
-            placeholder="Mobile number"
-            value={formData.mobile}
-            onChange={handleChange}
-            required
-          />
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Create password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <input name="name" placeholder="Name" onChange={handleChange} required />
+          <input name="email" placeholder="Email" onChange={handleChange} required />
+          <input name="mobile" placeholder="Mobile" onChange={handleChange} required />
+          <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
 
           <button type="submit">Sign up</button>
         </form>
-
-        <p className="login-link">
-          Already have an account?{" "}
-          <span onClick={() => (window.location.href = "/login")}>
-            Login
-          </span>
-        </p>
       </div>
     </div>
   );
