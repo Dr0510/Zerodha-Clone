@@ -15,7 +15,7 @@ function Universe() {
           <img
             className="p-2 m-2 "
             style={{ width: "50%" }}
-            src="media/images/zerodhafundhouse.png"
+            src="media/images/zerodhaFundhouse.png"
           />
           <p>
             Our asset management venture <br />
@@ -27,7 +27,7 @@ function Universe() {
           <img
             className="p-2 m-2 "
             style={{ width: "60%" }}
-            src="media/images/SensibullLogo.svg"
+            src="media/images/sensibullLogo.svg"
           />
           <p>
             Options trading platform that lets you <br />
