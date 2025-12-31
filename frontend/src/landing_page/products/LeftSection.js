@@ -66,7 +66,7 @@ function LeftSection({
 
             <a href={appStore}>
               <img
-                src="media/images/appStoreBadge.svg"
+                src="media/images/appstoreBadge.svg"
                 alt="App Store"
                 style={{ height: "40px" }}
               />
