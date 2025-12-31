@@ -98,7 +98,7 @@ function Team() {
 
         <div className="col-md-4 text-center">
           <img
-            src="media/images/Karthik.jpg"
+            src="media/images/karthik.jpg"
             alt="Karthik"
             style={{ borderRadius: '50%', width: '70%' }}
           />
