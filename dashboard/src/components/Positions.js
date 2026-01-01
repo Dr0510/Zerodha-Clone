@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { API_BASE } from "../api";   // ✅ ADD THIS
 
 const Positions = () => {
   const [allPosition, setAllPosition] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://zerodha-clone-backend-sge5.onrender.com/allPositions")
+      .get(`${API_BASE}/allPositions`)   // ✅ USE API_BASE
       .then((res) => setAllPosition(res.data))
       .catch((err) => console.error(err));
   }, []);
