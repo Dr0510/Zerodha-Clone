@@ -11,19 +11,19 @@ const { OrdersModel } = require("./model/OrdersModel");
 const User = require("./model/UserModel");
 
 const app = express();
-
 const PORT = process.env.PORT || 3002;
 const MONGO_URI = process.env.MONGO_URI;
 
 /* =======================
-   CORS CONFIG (NODE 22 SAFE)
+   CORS (FIXED)
 ======================= */
 app.use(
   cors({
     origin: [
-      "https://zerodha-frontend-dd5t.onrender.com",
+      "https://zerodha-dashboard-a2tz.onrender.com",
       "http://localhost:3000",
     ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
@@ -45,112 +45,78 @@ mongoose
   });
 
 /* =======================
-   HEALTH CHECK (IMPORTANT)
+   HEALTH CHECK
 ======================= */
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
 /* =======================
-   SIGNUP API
+   AUTH
 ======================= */
 app.post("/api/signup", async (req, res) => {
-  try {
-    const { name, email, mobile, password } = req.body;
+  const { name, email, mobile, password } = req.body;
 
-    if (!name || !email || !mobile || !password) {
-      return res.status(400).json({ message: "All fields required" });
-    }
-
-    const existingUser = await User.findOne({
-      $or: [{ email }, { mobile }],
-    });
-
-    if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const user = await User.create({
-      name,
-      email,
-      mobile,
-      password: hashedPassword,
-    });
-
-    res.status(201).json({
-      message: "Signup successful",
-      userId: user._id,
-    });
-  } catch (error) {
-    console.error("Signup error:", error);
-    res.status(500).json({ message: "Server error" });
+  if (!name || !email || !mobile || !password) {
+    return res.status(400).json({ message: "All fields required" });
   }
+
+  const existingUser = await User.findOne({
+    $or: [{ email }, { mobile }],
+  });
+
+  if (existingUser) {
+    return res.status(400).json({ message: "User already exists" });
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const user = await User.create({
+    name,
+    email,
+    mobile,
+    password: hashedPassword,
+  });
+
+  res.status(201).json({ message: "Signup successful" });
 });
 
-/* =======================
-   LOGIN API
-======================= */
 app.post("/api/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
+  const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ message: "All fields required" });
-    }
+  const user = await User.findOne({ email });
+  if (!user) return res.status(400).json({ message: "User not found" });
 
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: "User not found" });
-    }
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch)
+    return res.status(400).json({ message: "Invalid password" });
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ message: "Invalid password" });
-    }
-
-    res.json({
-      message: "Login successful",
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-      },
-    });
-  } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).json({ message: "Server error" });
-  }
+  res.json({ message: "Login successful", user });
 });
 
 /* =======================
    HOLDINGS & POSITIONS
 ======================= */
 app.get("/allHoldings", async (req, res) => {
-  const allHoldings = await HoldingsModel.find({});
-  res.json(allHoldings);
+  const data = await HoldingsModel.find({});
+  res.json(data);
 });
 
 app.get("/allPositions", async (req, res) => {
-  const allPositions = await PositionsModel.find({});
-  res.json(allPositions);
+  const data = await PositionsModel.find({});
+  res.json(data);
 });
 
 /* =======================
    ORDERS
 ======================= */
 app.post("/newOrder", async (req, res) => {
-  const { name, qty, price, mode } = req.body;
-
-  const newOrder = new OrdersModel({ name, qty, price, mode });
-  await newOrder.save();
-
+  const order = new OrdersModel(req.body);
+  await order.save();
   res.json({ message: "Order saved!" });
 });
 
 /* =======================
-   SERVER START
+   START SERVER
 ======================= */
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
