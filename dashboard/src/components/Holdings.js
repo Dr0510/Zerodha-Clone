@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { VerticalGraph } from "./VerticalGraph";
+import { API_BASE } from "../api";   // ✅ ADD THIS
 
 const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://zerodha-clone-backend-sge5.onrender.com/allHoldings")
+      .get(`${API_BASE}/allHoldings`)   // ✅ USE API_BASE
       .then((res) => {
         setAllHoldings(res.data);
       })
