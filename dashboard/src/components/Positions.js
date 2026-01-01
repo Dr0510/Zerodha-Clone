@@ -1,21 +1,15 @@
-import React from "react";
-// import { positions } from "../data/data";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState,useEffect } from "react";
-  
-const Positions = () => {
 
+const Positions = () => {
   const [allPosition, setAllPosition] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/allPositions")
+      .get("https://zerodha-clone-t5ol.onrender.com/allPositions")
       .then((res) => setAllPosition(res.data))
       .catch((err) => console.error(err));
   }, []);
-
-
-
 
   return (
     <>
@@ -23,42 +17,39 @@ const Positions = () => {
 
       <div className="order-table">
         <table>
-          <tr>
-            <th>Product</th>
-            <th>Instrument</th>
-            <th>Qty.</th>
-            <th>Avg.</th>
-            <th>LTP</th>
-            <th>P&L</th>
-            <th>Chg.</th>
-          </tr>
-
-          {allPosition.map((stock,index) => {
-            
-            const curValue = stock.price * stock.qty;
-            const isProfit = curValue - stock.avg * stock.qty >= 0.0;
-            const profitClass = isProfit ? "profit" : "loss";
-            const dayClass = stock.isLoss ? "loss" : "profit";
-
-            return (
-              <tr key={index}> 
-                <td>{stock.product}</td>
-                <td>{stock.name}</td>
-                <td>{stock.qty}</td>
-                <td>{stock.avg.toFixed(2)}</td>
-                <td>{stock.price.toFixed(2)}</td>
-                <td className={profitClass}>
-                  {(curValue - stock.avg * stock.qty).toFixed(2)}
-                </td>
-                <td className={dayClass}>
-                  {stock.day}
-                </td>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Instrument</th>
+              <th>Qty.</th>
+              <th>Avg.</th>
+              <th>LTP</th>
+              <th>P&L</th>
+              <th>Chg.</th>
             </tr>
-            );
+          </thead>
 
-          })}
+          <tbody>
+            {allPosition.map((stock) => {
+              const curValue = stock.price * stock.qty;
+              const isProfit = curValue - stock.avg * stock.qty >= 0;
+              const profitClass = isProfit ? "profit" : "loss";
 
-
+              return (
+                <tr key={stock._id}>
+                  <td>{stock.product}</td>
+                  <td>{stock.name}</td>
+                  <td>{stock.qty}</td>
+                  <td>{stock.avg.toFixed(2)}</td>
+                  <td>{stock.price.toFixed(2)}</td>
+                  <td className={profitClass}>
+                    {(curValue - stock.avg * stock.qty).toFixed(2)}
+                  </td>
+                  <td>{stock.day}</td>
+                </tr>
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </>
