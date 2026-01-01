@@ -7,7 +7,7 @@ const Holdings = () => {
 
   useEffect(() => {
     axios
-      .get("https://zerodha-clone-t5ol.onrender.com/allHoldings")
+      .get("https://zerodha-clone-backend-sge5.onrender.com/allHoldings")
       .then((res) => {
         setAllHoldings(res.data);
       })
